@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20191003101443) do
 
   create_table "group_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20191003101443) do
     t.index ["name"], name: "index_groups_on_name", unique: true, using: :btree
   end
 
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                                null: false
     t.string   "email",                  default: "", null: false
@@ -44,4 +46,5 @@ ActiveRecord::Schema.define(version: 20191003101443) do
 
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+
 end
