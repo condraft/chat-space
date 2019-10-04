@@ -1,13 +1,13 @@
-.flash-box {
-  color: $chat-space-color;
-  font-size: 1rem;
-  font-weight: lighter;
-  text-align: center;
-  width: 100vw;
-  &__notice{
-    background-color: #38aef0;
-  }
-}
+// .flash-box {
+//   color: $chat-space-color;
+//   font-size: 1rem;
+//   font-weight: lighter;
+//   text-align: center;
+//   width: 100vw;
+//   &__notice{
+//     background-color: #38aef0;
+//   }
+// }
 
 
 .chat-side {
@@ -58,13 +58,18 @@
     background-color: #2f3e51;
     padding: 20px 20px 0;
     overflow: scroll;
-    &__group {
+    a{
+      text-decoration: none;
+    }
+    .group {
       margin-bottom: 40px;
-      &__group-name{
+      &__name{
+        color: white;
         font-size: 15px;
         margin-bottom: 5px;
       }
-      &__latest-message{
+      &__message{
+        color: white;
         font-size: 11px;
       }
     }
