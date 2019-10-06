@@ -11,7 +11,7 @@
       .chat-main__main-header__edit-btn
         Edit
     .chat-main__messages
-      = render "message"
+      = render @messages
 
     .chat-main__form
       = form_for [@group, @message] do |f|
