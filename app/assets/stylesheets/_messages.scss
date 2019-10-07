@@ -147,40 +147,44 @@
     height: 90px;
     padding: 20px 40px;
     background-color: #ddd;
-    &__input-box{
-      position: relative;
-      width: 100%;
-      &__image{
-        font-size: 1.3rem;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-      }
-      &__submit-btn{
-        width: 100px;
-        height: 50px;
-        padding: 0 30px;
-        margin-left: 35px;
-        background-color: #38aef0;
-        color: $chat-space-color;
-        cursor: pointer;
-      }
-    }
-
-
   }
 }
 #new_message.new_message{
   display: flex;
+  width: 100%;
 }
-#message_content.input-box__text{
+
+.hidden{
+  display: none;
+}
+
+.form__mask{
+  position: relative;
+}
+
+.form__message{
   height: 50px;
   width: 100%;
   padding: 0 0 0 10px;
   color: $message-color;
   border-style: none;
+
 }
-#message_image.input-box__image__file{
-  display: none;
+
+.icon{
+  font-size: 1.3rem;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.form__submit{
+  width: 100px;
+  height: 50px;
+  padding: 0 30px;
+  margin-left: 35px;
+  background-color: #38aef0;
+  color: $chat-space-color;
+  cursor: pointer;
 }

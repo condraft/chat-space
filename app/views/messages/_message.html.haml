@@ -1,16 +1,11 @@
 .chat-main__messages__message
   .chat-main__messages__message__upper-info
     .chat-main__messages__message__upper-info__talker
-      test-user
+      = message.user.name
     .chat-main__messages__message__upper-info__date
-      2019/09/30(Mon) 19:11:03
+      = message.created_at.strftime("%Y/%m/%d %H:%M")
   .chat-main__messages__message__text
-    こんにちわ
-.chat-main__messages__message
-  .chat-main__messages__message__upper-info
-    .chat-main__messages__message__upper-info__talker
-      test-user
-    .chat-main__messages__message__upper-info__date
-      2019/09/30(Mon) 19:11:24
-  .chat-main__messages__message__text
-    さようなら
+    - if message.content.present?
+      %p.lower-message__content
+        = message.content
+    = image_tag message.image.url, class: 'text__image' if message.image.present?
