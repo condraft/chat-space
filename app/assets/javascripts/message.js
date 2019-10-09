@@ -42,8 +42,7 @@ $(document).on('turbolinks:load', function(){
     .done(function(data){    
       var html = buildHTML(data);
       $('.chat-main__messages').append(html); //親クラスにアペンド
-      $('#message_content').val(''); //チャット欄空欄にする
-      $('#message_image').val(''); //画像空欄にする
+      $('#new_message')[0].reset(); //フォームを一括でリセットする
       scrollBottom();
     })
     .fail(function(data){
