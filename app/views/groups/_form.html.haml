@@ -19,5 +19,14 @@
       #user-search-result
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
+      %label.chat-group-form__label{:for => "members"} チャットメンバー
+    .chat-group-form__field--right.member_search_result
+      .chat-group-user
+        %input{ name: "group[user_ids][]", type: "hidden", value: "#{current_user.id}" }  
+        %p.chat-group-user__name 
+          = current_user.name
+        %p.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
+  .chat-group-form__field.clearfix
+    .chat-group-form__field--left
     .chat-group-form__field--right
       = f.submit class: 'chat-group-form__action-btn'
