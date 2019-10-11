@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function(){
   function buildHTML(message) {
     var content = message.content ? `${ message.content }` : ""; //条件分岐
     var img = message.image ? `<img src= ${ message.image }>` : ""; //条件分岐
-    var html = `<div class="chat-main__messages__message" data-id="${message.id}"> 
+    var html = `<div class="chat-main__messages__message" data-message-id="${message.id}"> 
                   <div class="chat-main__messages__message__upper-info">
                     <p class="chat-main__messages__message__upper-info__talker">
                       ${message.user_name}
@@ -52,4 +52,29 @@ $(document).on('turbolinks:load', function(){
       $('.form__submit').prop('disabled', false);
     })
   })
+  var reloadMessages = function() {
+    console.log("ok")
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      last_message_id = $('.chat-main__messages__message:last').data("message-id"); //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+      console.log(last_message_id)
+      $.ajax({
+        url: 'api/messages',  //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
+        type: 'get',  //ルーティングで設定した通りhttpメソッドをgetに指定
+        dataType: 'json',
+        data: {id: last_message_id}  //dataオプションでリクエストに値を含める
+      })
+      .done(function(messages) {
+        var insertHTML = '';  //追加するHTMLの入れ物を作る
+        messages.forEach(function (message){  //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+          insertHTML = buildHTML(message); //メッセージが入ったHTMLを取得
+          $('.chat-main__messages').append(insertHTML);  //メッセージを追加
+        })
+        $('.chat-main__messages').animate({scrollTop: $('.chat-main__messages')[0].scrollHeight}, 'fast'); //スクロール
+      })
+      .fail(function() {
+        console.log('error');
+      });
+    }
+  };
+  setInterval(reloadMessages, 5000);
 });
