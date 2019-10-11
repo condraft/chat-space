@@ -68,13 +68,12 @@ $(document).on('turbolinks:load', function(){
           insertHTML = buildHTML(message); //メッセージが入ったHTMLを取得
           $('.chat-main__messages').append(insertHTML);  //メッセージを追加
         })
-        $('.chat-main__messages').animate({scrollTop: $('.chat-main__messages')[0].scrollHeight}, 'fast');
-
+        $('.chat-main__messages').animate({scrollTop: $('.chat-main__messages')[0].scrollHeight}, 'fast'); //スクロール
       })
       .fail(function() {
         console.log('error');
       });
     }
   };
-  setInterval(reloadMessages, 5000);
+  // setInterval(reloadMessages, 5000);
 });
