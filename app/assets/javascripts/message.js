@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function(){
   function buildHTML(message) {
     var content = message.content ? `${ message.content }` : ""; //条件分岐
     var img = message.image ? `<img src= ${ message.image }>` : ""; //条件分岐
-    var html = `<div class="chat-main__messages__message" data-id="${message.id}"> 
+    var html = `<div class="chat-main__messages__message" data-message-id="${message.id}"> 
                   <div class="chat-main__messages__message__upper-info">
                     <p class="chat-main__messages__message__upper-info__talker">
                       ${message.user_name}
@@ -55,7 +55,8 @@ $(document).on('turbolinks:load', function(){
   var reloadMessages = function() {
     console.log("ok")
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
-      last_message_id = $('.message:last').data("message-id"); //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+      last_message_id = $('.chat-main__messages__message:last').data("message-id"); //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+      console.log(last_message_id)
       $.ajax({
         url: 'api/messages',  //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
         type: 'get',  //ルーティングで設定した通りhttpメソッドをgetに指定
@@ -75,5 +76,5 @@ $(document).on('turbolinks:load', function(){
       });
     }
   };
-  // setInterval(reloadMessages, 5000);
+  setInterval(reloadMessages, 5000);
 });
