@@ -8,9 +8,10 @@
         .chat-main__main-header__left-box__menber-list
           Member：
           .chat-main__main-header__left-box__member-list__member
-            test-user
-      .chat-main__main-header__edit-btn
-        Edit
+            - @group.users.each do |user|
+              = user.name
+      =link_to 'Edit', edit_group_path(@group.id), class:"chat-main__main-header__edit-btn"
+        
     .chat-main__messages
       = render @messages
 
