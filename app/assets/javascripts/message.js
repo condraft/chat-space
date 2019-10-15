@@ -61,13 +61,15 @@ $(document).on('turbolinks:load', function(){
         dataType: 'json',
         data: {id: last_message_id}  //dataオプションでリクエストに値を含める
       })
+      
       .done(function(messages) {
         var insertHTML = '';  //追加するHTMLの入れ物を作る
         messages.forEach(function (message){  //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
           insertHTML = buildHTML(message); //メッセージが入ったHTMLを取得
           $('.chat-main__messages').append(insertHTML);  //メッセージを追加
+          $('.chat-main__messages').animate({scrollTop: $('.chat-main__messages')[0].scrollHeight}, 'fast'); //スクロール
         })
-        $('.chat-main__messages').animate({scrollTop: $('.chat-main__messages')[0].scrollHeight}, 'fast'); //スクロール
+        
       })
       .fail(function() {
         console.log('error');
