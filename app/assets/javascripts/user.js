@@ -35,20 +35,16 @@ $(document).on('turbolinks:load', function(){
         data: { keyword: input },   // keyword: inputを送信する
         dataType: 'json'            // サーバから値を返すjson
       })
-      .done(function(users){                // json形式のuserを代入。複数形:配列型
-        if (input.length === 0) {         // フォームの文字列長さが0であれば、結果を表示しない
-          $('#user-search-result').empty();
+      .done(function(users) {
+        $("#user-search-result").empty();
+          if (users.length !== 0) {
+            users.forEach(function(user){
+            appendUser(user);
+            });
           }
-        else if (input.length !== 0){     // 値が等しくないもしくは型が等しくなければtrueを返す。
-          $('#user-search-result').empty();
-          users.forEach(function(user){ // users情報をひとつずつとりだしてuserに代入
-            appendUser(user)              // appendUserメソッド全部に適用
-          });
-        }
-        else {
-          $('#user-search-result').empty(); // ユーザーが見つからない記述
-          appendErrMsgToHTML("一致するユーザーが見つかりません");
-        }
+          else {
+            appendErrMsgToHTML("一致するユーザーはいません");
+          }
         })
       .fail(function() {
         alert('ユーザー検索に失敗しました');  
